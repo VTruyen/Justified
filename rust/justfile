@@ -1,0 +1,29 @@
+# Build the entire project
+[group('Build')]
+build:
+    cargo build
+
+# Run all the tests when no modules provides or a specific module tests
+[group('Code Quality')]
+test module='':
+    cargo test {{module}}
+
+# Format all code in the project
+[group('Code Quality')]
+fmt:
+    cargo fmt --all
+
+# Run clippy to check for common mistakes and improve code quality
+[group('Code Quality')]
+lint:
+    cargo clippy --all-targets --all-features -- -D warnings
+
+# Run the project
+[group('Run')]
+run:
+    cargo run
+
+# Clean the project by removing generated target directory
+[group('Clean')]
+clean :
+    cargo clean
