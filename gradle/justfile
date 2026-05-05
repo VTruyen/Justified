@@ -1,29 +1,31 @@
 # Build the entire project
 [group('Build')]
 build:
-    @echo "to iplement"
+    ./gradlew build
 
-# Run all the tests when no modules provides or a specific module tests
+# Run all the tests when no modules provided or a specific module tests
 [group('Code Quality')]
 test module='':
-    @echo "to iplement"
+    {{ if module != "" { "./gradlew " + module + ":test" } else { "./gradlew test" } }}
 
+# Required Spotless plugin to work correctly
 # Format all code in the project
 [group('Code Quality')]
 fmt:
-    @echo "to iplement"
+    ./gradlew spotlessApply
 
-# Run clippy to check for common mistakes and improve code quality
+# Required Checkstyle plugin to work correctly
+# Run checkstyle to check for common mistakes and improve code quality
 [group('Code Quality')]
 lint:
-    @echo "to iplement"
+    ./gradlew checkstyleMain checkstyleTest
 
 # Run the project
 [group('Run')]
 run:
-    @echo "to iplement"
+    ./gradlew bootRun
 
 # Clean the project by removing generated target directory
 [group('Clean')]
-clean :
-    @echo "to iplement"
+clean:
+    ./gradlew clean
