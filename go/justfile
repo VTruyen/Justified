@@ -1,29 +1,29 @@
 # Build the entire project
 [group('Build')]
 build:
-    @echo "to iplement"
+    go build ./...
 
-# Run all the tests when no modules provides or a specific module tests
+# Run all the tests when no packages provided or a specific package tests
 [group('Code Quality')]
-test module='':
-    @echo "to iplement"
+test package='./...':
+    go test {{ package }}
 
 # Format all code in the project
 [group('Code Quality')]
 fmt:
-    @echo "to iplement"
+    gofmt -w .
 
-# Run clippy to check for common mistakes and improve code quality
+# Run go vet to check for common mistakes and improve code quality
 [group('Code Quality')]
 lint:
-    @echo "to iplement"
+    go vet ./...
 
 # Run the project
 [group('Run')]
 run:
-    @echo "to iplement"
+    go run .
 
-# Clean the project by removing generated target directory
+# Clean the project by removing generated build cache
 [group('Clean')]
-clean :
-    @echo "to iplement"
+clean:
+    go clean ./...
