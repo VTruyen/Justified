@@ -1,29 +1,29 @@
 # Build the entire project
 [group('Build')]
 build:
-    @echo "to iplement"
+    @echo "to implement"
 
 # Run all the tests when no modules provides or a specific module tests
 [group('Code Quality')]
 test module='':
-    @echo "to iplement"
+    @echo "to implement"
 
 # Format all code in the project
 [group('Code Quality')]
 fmt:
-    @echo "to iplement"
+    @echo "to implement"
 
 # Run clippy to check for common mistakes and improve code quality
 [group('Code Quality')]
 lint:
-    @echo "to iplement"
+    @echo "to implement"
 
 # Run the project
 [group('Run')]
 run:
-    @echo "to iplement"
+    @echo "to implement"
 
 # Clean the project by removing generated target directory
 [group('Clean')]
 clean :
-    @echo "to iplement"
+    @echo "to implement"

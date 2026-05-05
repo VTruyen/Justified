@@ -41,6 +41,14 @@ To use this tool, simply run the following command in your terminal at the root 
 jf <langage> > justfile
 ```
 
+*Note: Replace `<language>` with the programming language you want to use. For example, if you want to use Python, you would run:*  
+
+```bash
+jf python > justfile
+```
+
+*Note': C is not supported yet , but it will be added in the future.*
+
 ## Windows
 
 *TODO...*
