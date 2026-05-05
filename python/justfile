@@ -1,0 +1,32 @@
+# Install the project dependencies
+[group('Build')]
+build:
+    pip install -r requirements.txt
+
+# Requires: pytest (pip install pytest)
+# Run all the tests when no modules provided or a specific module tests
+[group('Code Quality')]
+test module='':
+    pytest {{ if module != "" { module } else { "." } }}
+
+# Requires: black (pip install black)
+# Format all code in the project
+[group('Code Quality')]
+fmt:
+    black .
+
+# Requires: ruff (pip install ruff)
+# Run ruff to check for common mistakes and improve code quality
+[group('Code Quality')]
+lint:
+    ruff check .
+
+# Run the project
+[group('Run')]
+run:
+    python main.py
+
+# Clean the project by removing generated cache directories
+[group('Clean')]
+clean:
+    find . -type d -name "__pycache__" -exec rm -rf {} + && rm -rf .pytest_cache .ruff_cache

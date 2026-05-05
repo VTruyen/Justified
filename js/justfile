@@ -1,0 +1,42 @@
+# Install the project dependencies
+[group('Build')]
+build:
+    npm install
+
+# Requires: vitest (npm install -D vitest)
+# Run all the tests when no modules provided or a specific module tests
+[group('Code Quality')]
+test module='':
+    npx vitest run {{ if module != "" { module } else { "" } }}
+
+# Requires: prettier (npm install -D prettier)
+# Format all code in the project
+[group('Code Quality')]
+fmt:
+    npx prettier --write .
+
+# Requires: eslint (npm install -D eslint)
+# Run eslint to check for common mistakes and improve code quality
+[group('Code Quality')]
+lint:
+    npx eslint .
+
+# Start the development server
+[group('Run')]
+run:
+    npx vite
+
+# Build the project for production
+[group('Build')]
+prod:
+    npx vite build
+
+# Preview the production build locally
+[group('Run')]
+preview:
+    npx vite preview
+
+# Clean the project by removing generated directories
+[group('Clean')]
+clean:
+    rm -rf node_modules dist
