@@ -1,29 +1,31 @@
 # Build the entire project
 [group('Build')]
 build:
-    @echo "to iplement"
+    mvn compile
 
-# Run all the tests when no modules provides or a specific module tests
+# Run all the tests when no modules provided or a specific module tests
 [group('Code Quality')]
 test module='':
-    @echo "to iplement"
+    mvn test {{ if module != "" { "-pl " + module } else { "" } }}
 
+# Required fmt-maven-plugin to work correctly
 # Format all code in the project
 [group('Code Quality')]
 fmt:
-    @echo "to iplement"
+    mvn fmt:format
 
-# Run clippy to check for common mistakes and improve code quality
+# Required maven-checkstyle-plugin to work correctly
+# Run checkstyle to check for common mistakes and improve code quality
 [group('Code Quality')]
 lint:
-    @echo "to iplement"
+    mvn checkstyle:check
 
-# Run the project
+# Run the project Spring Boot Application
 [group('Run')]
 run:
-    @echo "to iplement"
+    mvn spring-boot:run
 
 # Clean the project by removing generated target directory
 [group('Clean')]
-clean :
-    @echo "to iplement"
+clean:
+    mvn clean
