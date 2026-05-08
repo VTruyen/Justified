@@ -29,3 +29,11 @@ func VerifyLangageExist(langage string) (*Langage, error) {
 	}
 	return &lang, nil
 }
+
+func LangagesList() string {
+	langs := ""
+	for k := range langages {
+		langs = langs + "- " + k + "\n"
+	}
+	return langs
+}
