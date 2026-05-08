@@ -30,6 +30,6 @@ func filesResponse(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		io.WriteString(w, err.Error())
 	} else {
-		io.WriteString(w, fmt.Sprintf("Here are the files for %s langage", *langage))
+		http.ServeFile(w, r, fmt.Sprintf("../%s/justfile", *langage))
 	}
 }
