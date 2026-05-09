@@ -22,7 +22,7 @@ var langages = map[string]Langage{
 	"python": Python,
 }
 
-func VerifyLangageExist(langage string) (*Langage, error) {
+func verifyLangageExist(langage string) (*Langage, error) {
 	lang, ok := langages[langage]
 	if !ok {
 		return nil, fmt.Errorf("langage %s not supported", langage)

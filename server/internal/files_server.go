@@ -1,6 +1,8 @@
+// Package internal
 package internal
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
@@ -28,13 +30,13 @@ func langagesListResponse(w http.ResponseWriter, r *http.Request) {
 
 func filesResponse(w http.ResponseWriter, r *http.Request) {
 	lang := r.PathValue("lang")
-	langage, err := VerifyLangageExist(lang)
-	if err != nil {
-		fmt.Printf("Error: %s\n", err.Error())
-		w.WriteHeader(http.StatusBadRequest)
-		io.WriteString(w, err.Error())
-	} else {
+	langage, err := verifyLangageExist(lang)
+	if err == nil {
 		fmt.Printf("%s justfile served !\n", *langage)
 		http.ServeFile(w, r, fmt.Sprintf("../%s/justfile", *langage))
+	} else {
+		fmt.Printf("Error: %s\n", err.Error())
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(CreateHTTPNotFoundError(r.URL.Path, err.Error()))
 	}
 }
