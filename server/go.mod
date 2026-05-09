@@ -1,3 +1,3 @@
-module github.com/justified/server
+module justified/server
 
 go 1.23.4

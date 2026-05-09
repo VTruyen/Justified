@@ -2,9 +2,8 @@ package main
 
 import (
 	"fmt"
+	"justified/server/internal"
 	"log"
-
-	"github.com/justified/server/internal"
 )
 
 func main() {

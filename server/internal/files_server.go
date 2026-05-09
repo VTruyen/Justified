@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"justified/server/internal/errors"
 	"net/http"
 	"time"
 )
@@ -37,6 +38,6 @@ func filesResponse(w http.ResponseWriter, r *http.Request) {
 	} else {
 		fmt.Printf("Error: %s\n", err.Error())
 		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode(CreateHTTPNotFoundError(r.URL.Path, err.Error()))
+		json.NewEncoder(w).Encode(errors.CreateHTTPNotFoundError(r.URL.Path, err.Error()))
 	}
 }

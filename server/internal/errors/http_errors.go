@@ -1,4 +1,5 @@
-package internal
+// Package errors
+package errors
 
 import (
 	"net/http"
