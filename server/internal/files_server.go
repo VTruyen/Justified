@@ -4,7 +4,6 @@ package internal
 import (
 	"encoding/json"
 	"fmt"
-	"io"
 	"justified/server/internal/errors"
 	"net/http"
 	"time"
@@ -25,8 +24,7 @@ func CreateFilesServer() *http.Server {
 }
 
 func langagesListResponse(w http.ResponseWriter, r *http.Request) {
-	result := LangagesList()
-	io.WriteString(w, fmt.Sprintf("%v", result))
+	json.NewEncoder(w).Encode(LangagesList())
 }
 
 func filesResponse(w http.ResponseWriter, r *http.Request) {

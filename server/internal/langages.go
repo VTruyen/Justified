@@ -1,6 +1,10 @@
 package internal
 
-import "fmt"
+import (
+	"fmt"
+	"maps"
+	"slices"
+)
 
 type Langage string
 
@@ -30,10 +34,8 @@ func verifyLangageExist(langage string) (*Langage, error) {
 	return &lang, nil
 }
 
-func LangagesList() string {
-	langs := ""
-	for k := range langages {
-		langs = langs + "- " + k + "\n"
-	}
+func LangagesList() []string {
+	// create json array with key "langages"
+	langs := slices.Collect(maps.Keys(langages))
 	return langs
 }
