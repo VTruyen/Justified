@@ -18,8 +18,8 @@ func CreateFilesServer() *http.Server {
 		WriteTimeout:   10 * time.Second,
 		MaxHeaderBytes: 1 << 20,
 	}
-	http.HandleFunc("/{lang}/just", filesResponse)
-	http.HandleFunc("/langages/list", langagesListResponse)
+	http.HandleFunc("/justfiles/{lang}", filesResponse)
+	http.HandleFunc("/justfiles/langages", langagesListResponse)
 
 	return s
 }
